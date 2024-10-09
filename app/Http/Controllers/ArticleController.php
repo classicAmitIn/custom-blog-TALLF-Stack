@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        //
+        return view('articles.index', [
+            'articles' => Article::published()->with('category')->latest('published_at')->paginate(15),
+        ]);
     }
 
     /**
@@ -34,9 +37,9 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Article $article)
+    public function show(Article $article): View
     {
-        //
+        return view('articles.show', compact('article'));
     }
 
     /**

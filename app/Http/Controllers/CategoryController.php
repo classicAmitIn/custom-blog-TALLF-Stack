@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        //
+        return view('categories.index', [
+            'categories' => Category::active()->latest()->get(),
+        ]);
     }
 
     /**
@@ -34,9 +37,12 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Category $category): View
     {
-        //
+        return view('categories.show', [
+            'articles' => $category->articles()->published()->latest('published_at')->paginate(9),
+            'category' => $category,
+        ]);
     }
 
     /**

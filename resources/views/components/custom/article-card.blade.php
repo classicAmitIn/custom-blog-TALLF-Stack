@@ -1,20 +1,22 @@
-<div class="md:col-span-1 col-span-3">
-    <a href="http://127.0.0.1:8000/blog/laravel-34">
+@props(['article'])
+
+<div>
+    <a href="{{ route('articles.show', $article->slug) }}">
         <div>
             <img class="w-full rounded-xl"
-                src="http://127.0.0.1:8000/storage/3i5uKG05UnvhbORZ3ieDkvtAOL8ss5-metaZXAxNSAoMjIpLnBuZw==-.png">
+                src="{{ $article->featured_image }}">
         </div>
     </a>
     <div class="mt-3">
         <div class="flex items-center mb-2">
-            <a href="http://127.0.0.1:8000/categories/laravel" class="bg-red-600
+            <a href="{{ route('categories.show', $article->category->slug) }}" class="bg-red-600
                 text-white
                 rounded-xl px-3 py-1 text-sm mr-3">
-                Laravel
+                {{ $article->category->title }}
             </a>
-            <p class="text-gray-500 text-sm">2023-09-05</p>
+            <p class="text-gray-500 text-sm">{{ $article->published_at->format('M d, Y') }}</p>
         </div>
-        <a class="text-xl font-bold text-gray-900">Laravel 10 tutorial feed page #34</a>
+        <a href="{{ route('articles.show', $article->slug) }}" class="text-xl font-bold text-gray-900">{{ $article->title }}</a>
     </div>
 
 </div>

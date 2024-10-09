@@ -3,8 +3,35 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
+            <div class="mb-10">
+                <div class="mb-16">
+                    <h2 class="mt-16 mb-5 text-3xl text-yellow-800 font-bold">Featured Posts</h2>
+                        <div class="grid grid-cols-3 gap-10 w-full">
+                            @foreach ($featuredArticles as $article)
+                            <div class="md:col-span-1 col-span-3">
+                                <x-custom.article-card :article="$article" />
+                            </div>
+                            @endforeach
+                        </div>
+                    <a class="mt-10 block text-center text-lg text-yellow-800 font-semibold"
+                        href="http://127.0.0.1:8000/blog">More
+                        Posts</a>
+                </div>
+                <hr>
+
+                <h2 class="mt-16 mb-5 text-3xl text-yellow-800 font-bold">Latest Posts</h2>
+                <div class="w-full mb-5">
+                    <div class="grid grid-cols-3 gap-10 gap-y-32 w-full">
+                        @foreach ($latestArticles as $article)
+                        <div class="md:col-span-1 col-span-3">
+                            <x-custom.article-card :article="$article" />
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                <a class="mt-10 block text-center text-lg text-yellow-800 font-semibold"
+                    href="http://127.0.0.1:8000/blog">More
+                    Posts</a>
             </div>
         </div>
     </div>

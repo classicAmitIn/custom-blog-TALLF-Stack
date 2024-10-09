@@ -23,7 +23,7 @@
                 </a>
             </h2>
 
-            <p class="mt-2 text-base text-gray-700 font-light">
+            <p class="mt-2 text-base text-gray-700 font-medium">
                 {{ $article->getSummary() }}
             </p>
             <div class="article-actions-bar mt-6 flex items-center justify-between">

@@ -15,7 +15,7 @@
                 src="{{ $article->user->profile_photo_url }}"
                 alt="avatar">
                 <span class="mr-1 text-xs">{{ $article->user->name }}</span>
-                <span class="text-gray-500 text-xs">. {{ $article->published_at->format('M d, Y') }}</span>
+                <span class="text-gray-500 text-xs">. {{ $article->published_at->diffForHumans() }}</span>
             </div>
             <h2 class="text-xl font-bold text-gray-900">
                 <a href="{{ route('articles.show', $article->slug) }}" >

@@ -13,7 +13,7 @@
             <div class="article-meta flex py-1 text-sm items-center">
                 <img class="w-7 h-7 rounded-full mr-3"
                 src="{{ $article->user->profile_photo_url }}"
-                alt="avatar">
+                alt="{{ $article->user->name }}">
                 <span class="mr-1 text-xs">{{ $article->user->name }}</span>
                 <span class="text-gray-500 text-xs">. {{ $article->published_at->diffForHumans() }}</span>
             </div>

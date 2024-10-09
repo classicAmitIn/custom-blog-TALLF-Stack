@@ -6,7 +6,7 @@
             <a href="{{ route('articles.show', $article->slug) }}" >
                 <img class="mw-100 mx-auto rounded-xl"
                 src="{{ $article->featured_image }}"
-                alt="thumbnail">
+                alt="{{ $article->featured_image_caption }}">
             </a>
         </div>
         <div class="col-span-8">

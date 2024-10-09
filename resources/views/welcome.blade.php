@@ -9,7 +9,7 @@
                         <div class="grid grid-cols-3 gap-10 w-full">
                             @foreach ($featuredArticles as $article)
                             <div class="md:col-span-1 col-span-3">
-                                <x-custom.article-card :article="$article" />
+                                <x-custom.featured-article :article="$article" />
                             </div>
                             @endforeach
                         </div>
@@ -24,7 +24,7 @@
                     <div class="grid grid-cols-3 gap-10 gap-y-32 w-full">
                         @foreach ($latestArticles as $article)
                         <div class="md:col-span-1 col-span-3">
-                            <x-custom.article-card :article="$article" />
+                            <x-custom.featured-article :article="$article" />
                         </div>
                         @endforeach
                     </div>

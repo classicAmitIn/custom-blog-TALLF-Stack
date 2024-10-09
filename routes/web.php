@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', HomeController::class)->name('welcome');
+Route::get('/', WelcomeController::class)->name('welcome');
 Route::view('/about', 'about')->name('about');
 Route::resource('articles', ArticleController::class)->only(['index', 'show']);
 Route::resource('categories', CategoryController::class)->only(['index', 'show']);

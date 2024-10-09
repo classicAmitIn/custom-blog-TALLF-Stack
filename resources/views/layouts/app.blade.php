@@ -38,6 +38,9 @@
             </main>
         </div>
 
+        <!-- Footer Component -->
+        <x-custom.footer />
+
         @stack('modals')
 
         @livewireScripts

@@ -24,7 +24,7 @@
             </h2>
 
             <p class="mt-2 text-base text-gray-700 font-light">
-                {{ $article->summary }}
+                {{ $article->getSummary() }}
             </p>
             <div class="article-actions-bar mt-6 flex items-center justify-between">
                 <div class="flex items-center space-x-4">

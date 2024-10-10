@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Article extends Model
@@ -68,5 +69,12 @@ class Article extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function getFeaturedImageUrl()
+    {
+        $isUrl = str_contains($this->featured_image, 'http');
+
+        return ($isUrl) ? $this->featured_image : Storage::disk('public')->url($this->featured_image);
     }
 }

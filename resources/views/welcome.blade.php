@@ -13,7 +13,7 @@
                         </div>
                     <a class="mt-10 block text-center text-lg text-yellow-800 font-semibold"
                         href="http://127.0.0.1:8000/blog">More
-                        Posts</a>
+                        Articles</a>
                 </div>
                 <hr>
 
@@ -28,7 +28,7 @@
                 </div>
                 <a class="mt-10 block text-center text-lg text-yellow-800 font-semibold"
                     href="http://127.0.0.1:8000/blog">More
-                    Posts</a>
+                    Articles</a>
             </div>
         </div>
     </div>

@@ -35,16 +35,34 @@ class ArticleList extends Component
         $this->resetPage();
     }
 
+    public function clearFilters()
+    {
+        $this->search = '';
+        $this->category = '';
+        $this->resetPage();
+    }
+
     #[Computed()]
     public function articles()
     {
         return Article::published()
                     ->where('title', 'like', "%{$this->search}%")
-                    ->when(Category::where('slug',$this->category)->first(), function ($query) {
+                    ->when($this->activeCategory, function ($query) {
                         $query->withCategory($this->category);
                     })
+                    ->search($this->search)
                     ->orderBy('published_at', $this->sort)
                     ->simplePaginate(9);
+    }
+
+    #[Computed()]
+    public function activeCategory()
+    {
+        if ($this->category === null || $this->category === '') {
+            return null;
+        }
+
+        return Category::where('slug', $this->category)->first();
     }
 
     public function render()

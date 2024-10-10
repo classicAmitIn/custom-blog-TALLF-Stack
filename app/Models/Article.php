@@ -49,6 +49,13 @@ class Article extends Model
         $query->where('is_featured', true);
     }
 
+    public function scopeWithCategory($query, string $category)
+    {
+        $query->whereHas('category', function ($query) use ($category) {
+            $query->where('slug', $category);
+        });
+    }
+
      public function getReadingTime()
     {
         $mins = round(str_word_count($this->body) / 250);

@@ -56,6 +56,11 @@ class Article extends Model
         });
     }
 
+    public function scopeSearch($query, string $search = '')
+    {
+        $query->where('title', 'like', "%{$search}%");
+    }
+
      public function getReadingTime()
     {
         $mins = round(str_word_count($this->body) / 250);

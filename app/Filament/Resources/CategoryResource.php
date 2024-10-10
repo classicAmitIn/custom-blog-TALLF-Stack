@@ -9,6 +9,9 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
+use Illuminate\Support\Str;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -19,20 +22,60 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    /**
+     * The resource navigation group.
+     */
+    protected static ?string $navigationGroup = 'Publish';
+
+    /**
+     * The resource navigation sort order.
+     */
+    protected static ?int $navigationSort = 0;
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required(),
-                Forms\Components\TextInput::make('slug')
-                    ->required(),
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('text_color'),
-                Forms\Components\TextInput::make('bg_color'),
-                Forms\Components\Toggle::make('is_active')
-                    ->required(),
+                Forms\Components\Grid::make()
+                    ->columns(3)
+                    ->schema([
+                        Forms\Components\Section::make()
+                            ->columnSpan(2)
+                            ->schema([
+                                    Forms\Components\TextInput::make('title')
+                                        ->placeholder('Category Title Goes Here...')
+                                        ->live(onBlur: true)
+                                        ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null)
+                                        ->required()
+                                        ->maxLength(255)
+                                        ->autofocus(),
+                                    Forms\Components\TextInput::make('slug')
+                                        ->disabled()
+                                        ->dehydrated()
+                                        ->required()
+                                        ->maxLength(255)
+                                        ->unique(Category::class, 'slug', ignoreRecord: true),
+                                    Forms\Components\Textarea::make('description')
+                                        ->columnSpanFull()
+                                        ->rows(5)
+                                        ->required(),
+
+                            ]),
+                            Forms\Components\Section::make()
+                            ->columnSpan(1)
+                            ->schema([
+                                Forms\Components\ColorPicker::make('text_color')
+                                        ->label('Text Color')
+                                        ->required(),
+                                Forms\Components\ColorPicker::make('bg_color')
+                                        ->label('Background Color')
+                                        ->required(),
+                                Forms\Components\Toggle::make('is_active')
+                                        ->label('Visible to Users.')
+                                        ->required()
+                                        ->default(false),
+                            ]),
+                        ]),
             ]);
     }
 
@@ -42,18 +85,18 @@ class CategoryResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('text_color')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('bg_color')
-                    ->searchable(),
-                Tables\Columns\IconColumn::make('is_active')
-                    ->boolean(),
+                // Tables\Columns\TextColumn::make('slug')
+                //     ->searchable(),
+                Tables\Columns\ToggleColumn::make('is_active')
+                    ->label('Active'),
+                Tables\Columns\ColorColumn::make('text_color')
+                    ->label('Text Color'),
+                Tables\Columns\ColorColumn::make('bg_color')
+                    ->label('Background Color'),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->since()
+                    ->sortable(),
+                    // ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()

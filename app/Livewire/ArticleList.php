@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Article;
+use App\Models\Category;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
@@ -19,6 +20,9 @@ class ArticleList extends Component
     #[Url()]
     public $search = '';
 
+    #[Url()]
+    public $category = '';
+
     public function setSort($sort)
     {
         $this->sort = ($sort === 'desc') ? 'desc' : 'asc';
@@ -34,7 +38,13 @@ class ArticleList extends Component
     #[Computed()]
     public function articles()
     {
-        return Article::published()->where('title', 'like', "%{$this->search}%")->orderBy('published_at', $this->sort)->simplePaginate(9);
+        return Article::published()
+                    ->where('title', 'like', "%{$this->search}%")
+                    ->when(Category::where('slug',$this->category)->first(), function ($query) {
+                        $query->withCategory($this->category);
+                    })
+                    ->orderBy('published_at', $this->sort)
+                    ->simplePaginate(9);
     }
 
     public function render()

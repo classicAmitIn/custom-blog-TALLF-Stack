@@ -64,10 +64,10 @@ class CategoryResource extends Resource
                             Forms\Components\Section::make()
                             ->columnSpan(1)
                             ->schema([
-                                Forms\Components\ColorPicker::make('text_color')
+                                Forms\Components\TextInput::make('text_color')
                                         ->label('Text Color')
                                         ->required(),
-                                Forms\Components\ColorPicker::make('bg_color')
+                                Forms\Components\TextInput::make('bg_color')
                                         ->label('Background Color')
                                         ->required(),
                                 Forms\Components\Toggle::make('is_active')

@@ -1,6 +1,15 @@
 <div class=" px-3 lg:px-7 py-6">
     <div class="flex justify-between items-center border-b border-gray-100">
         <div class="text-gray-600">
+            @if ($this->activeCategory || $search)
+                <x-button class="mr-3 text-xs gray-500" wire:click="clearFilters()">Reset</x-button>
+            @endif
+            @if ($this->activeCategory)
+                <x-custom.badge wire:navigate href="{{ route('articles.index', ['category' => $this->activeCategory->slug]) }}"
+                    :textColor="$this->activeCategory->text_color" :bgColor="$this->activeCategory->bg_color">
+                    {{ $this->activeCategory->title }}
+                </x-custom.badge>
+            @endif
             @if ($search)
                 <span class="ml-2">
                     Searching : <strong>{{ $search }}</strong>

@@ -2,7 +2,7 @@
     query: '{{ request('search', '') }}'
 }">
     <div>
-        <h3 class="mb-3 text-lg font-semibold text-gray-900">{{ __('blog.search') }}</h3>
+        <h3 class="mb-3 text-lg font-semibold text-gray-900">Search Articles</h3>
         <div class="flex items-center px-3 py-2 mb-3 bg-gray-100 w-52 rounded-2xl">
             <span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

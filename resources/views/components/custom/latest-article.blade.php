@@ -26,9 +26,12 @@
             <p class="mt-2 text-base text-gray-700 font-medium">
                 {{ $article->getSummary() }}
             </p>
-            <div class="article-actions-bar mt-6 flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                    <span class="text-gray-500 text-sm">{{ $article->getReadingTime() }} min read</span>
+            <div class="flex items-center justify-between mt-6 article-actions-bar">
+                <div class="flex gap-x-2">
+                        <x-custom.category-badge :category="$article->category" />
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm text-gray-500">{{ $article->getReadingTime() }} min read</span>
+                    </div>
                 </div>
                 <div>
                     <a class="flex items-center">

@@ -8,9 +8,7 @@
                     <h2 class="mt-16 mb-5 text-3xl text-yellow-800 font-bold">Featured Posts</h2>
                         <div class="grid grid-cols-3 gap-10 w-full">
                             @foreach ($featuredArticles as $article)
-                            <div class="md:col-span-1 col-span-3">
-                                <x-custom.featured-article :article="$article" />
-                            </div>
+                                <x-custom.featured-article :article="$article" class="md:col-span-1 col-span-3" />
                             @endforeach
                         </div>
                     <a class="mt-10 block text-center text-lg text-yellow-800 font-semibold"

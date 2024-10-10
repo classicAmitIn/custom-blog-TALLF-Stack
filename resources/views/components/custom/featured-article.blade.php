@@ -1,6 +1,6 @@
 @props(['article'])
 
-<div>
+<div {{ $attributes}}>
     <a href="{{ route('articles.show', $article->slug) }}">
         <div>
             <img class="w-full rounded-xl"

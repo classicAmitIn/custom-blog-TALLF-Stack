@@ -4,7 +4,7 @@
     <a href="{{ route('articles.show', $article->slug) }}">
         <div>
             <img class="w-full rounded-xl"
-                src="{{ $article->featured_image }}">
+                src="{{ $article->getFeaturedImageUrl() }}">
         </div>
     </a>
     <div class="mt-3">

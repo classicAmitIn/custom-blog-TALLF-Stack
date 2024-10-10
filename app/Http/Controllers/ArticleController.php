@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -14,7 +15,10 @@ class ArticleController extends Controller
     public function index(): View
     {
         return view('articles.index', [
-            'articles' => Article::published()->with('category')->latest('published_at')->paginate(15),
+            // 'articles' => Article::published()->with('category')->latest('published_at')->paginate(15),
+            'categories' => Category::whereHas('articles', function ($query) {
+                                $query->published();
+                            })->take(10)->get(),
         ]);
     }
 

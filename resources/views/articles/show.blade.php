@@ -38,5 +38,6 @@
                 <x-custom.category-badge :category="$article->category" />
         </div>
 
+        <livewire:article-comments :key="'comments' . $article->id" :$article />
     </article>
 </x-app-layout>

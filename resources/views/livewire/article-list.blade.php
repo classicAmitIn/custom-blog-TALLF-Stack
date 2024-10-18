@@ -26,7 +26,7 @@
     </div>
     <div class="py-4">
         @foreach ($this->articles as $article)
-            <x-custom.latest-article :article="$article" />
+            <x-custom.latest-article wire:key="{{ $article->id }}" :article="$article" />
         @endforeach
     </div>
 

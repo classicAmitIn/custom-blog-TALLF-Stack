@@ -63,6 +63,11 @@ class Article extends Model
         $query->where('title', 'like', "%{$search}%");
     }
 
+    public function scopePopular($query)
+    {
+        $query->withCount('likes')->orderBy("likes_count", 'desc');
+    }
+
      public function getReadingTime()
     {
         $mins = round(str_word_count($this->body) / 250);

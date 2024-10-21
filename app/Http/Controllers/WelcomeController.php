@@ -14,8 +14,8 @@ class WelcomeController extends Controller
     public function __invoke(Request $request): View
     {
         return view('welcome', [
-            'featuredArticles' => Article::published()->featured()->latest('published_at')->take(3)->get(),
-            'latestArticles' => Article::published()->latest('published_at')->take(9)->get(),
+            'featuredArticles' => Article::published()->featured()->with('category')->latest('published_at')->take(3)->get(),
+            'latestArticles' => Article::published()->with('user', 'category')->latest('published_at')->take(9)->get(),
         ]);
     }
 }

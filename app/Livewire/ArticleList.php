@@ -49,6 +49,7 @@ class ArticleList extends Component
     public function articles()
     {
         return Article::published()
+                    ->with('user', 'category')
                     ->where('title', 'like', "%{$this->search}%")
                     ->when($this->activeCategory, function ($query) {
                         $query->withCategory($this->category);

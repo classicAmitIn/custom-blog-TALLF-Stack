@@ -26,6 +26,7 @@
             </div>
             <div>
                 <div class="flex items-center">
+                    <x-custom.category-badge :category="$article->category" />
                 </div>
             </div>
         </div>
@@ -38,7 +39,6 @@
 
 
         <div class="flex items-center mt-10 space-x-4">
-                {{-- <x-custom.category-badge :category="$article->category" /> --}}
             @foreach ($article->tags as $tag)
                 <x-custom.tag-badge :tag="$tag" />
             @endforeach

@@ -1,5 +1,5 @@
 <x-app-layout :title="$article->title">
-    <div class="max-w-5xl py-5 mx-auto mt-10">
+    <div class="max-w-5xl py-5 mx-auto mt-10 px-3">
         <img class="my-2 rounded-lg" src="{{ $article->getFeaturedImageUrl() }}" alt="thumbnail">
         <h1 class="text-4xl font-bold text-left text-gray-800">
             {{ $article->title }}

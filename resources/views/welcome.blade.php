@@ -11,7 +11,7 @@
                         @endforeach
                     </div>
                     <a class="mt-10 block text-center text-lg text-yellow-800 font-semibold"
-                    href="http://127.0.0.1:8000/blog">More
+                    href="{{ route('articles.index') }}">More
                     Articles</a>
                 </div>
                 <hr>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <a class="mt-10 block text-center text-lg text-yellow-800 font-semibold"
-            href="http://127.0.0.1:8000/blog">More
+            href="{{ route('articles.index') }}">More
             Articles</a>
         </div>
     </div>

@@ -20,11 +20,11 @@ class WelcomeController extends Controller
         // ]);
 
         $featuredArticles = Cache::remember('featuredArticles', now()->addDay(), function () {
-            return Article::published()->featured()->with('category')->latest('published_at')->take(3)->get();
+            return Article::published()->featured()->with('category')->latest('published_at')->get();
         });
 
         $latestArticles = Cache::remember('latestArticles', now()->addDay(), function () {
-            return Article::published()->with('user', 'category')->latest('published_at')->take(9)->get();
+            return Article::published()->with('user', 'category')->latest('published_at')->get();
         });
 
         return view('welcome', [

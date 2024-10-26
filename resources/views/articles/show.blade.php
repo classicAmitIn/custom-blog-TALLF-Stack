@@ -1,6 +1,6 @@
 <x-app-layout :title="$article->title">
-    <article class="w-full col-span-4 py-5 mx-auto mt-10 md:col-span-3" style="max-width:700px">
-        <img class="w-full my-2 rounded-lg" src="{{ $article->getFeaturedImageUrl() }}" alt="thumbnail">
+    <div class="max-w-5xl py-5 mx-auto mt-10">
+        <img class="my-2 rounded-lg" src="{{ $article->getFeaturedImageUrl() }}" alt="thumbnail">
         <h1 class="text-4xl font-bold text-left text-gray-800">
             {{ $article->title }}
         </h1>
@@ -29,15 +29,21 @@
                 </div>
             </div>
         </div>
+        <div class="grid grid-cols-4">
+            <div class="col-span-4">
+              <article class="py-3 text-lg prose text-justify text-gray-800 lg:prose-xl max-w-none">{!! str($article->body)->markdown()->sanitizeHtml() !!}</article>
+            </div>
+          </div>
+        {{-- <article class="py-3 text-lg prose text-justify text-gray-800 lg:prose-xl">{!! str($article->body)->markdown()->sanitizeHtml() !!}</article> --}}
 
-        <div class="py-3 text-lg prose text-justify text-gray-800 article-content">
-            {!! $article->body !!}
-        </div>
 
         <div class="flex items-center mt-10 space-x-4">
-                <x-custom.category-badge :category="$article->category" />
+                {{-- <x-custom.category-badge :category="$article->category" /> --}}
+            @foreach ($article->tags as $tag)
+                <x-custom.tag-badge :tag="$tag" />
+            @endforeach
         </div>
 
         <livewire:article-comments :key="'comments' . $article->id" :$article />
-    </article>
+    </div>
 </x-app-layout>

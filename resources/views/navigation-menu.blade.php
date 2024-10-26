@@ -16,9 +16,9 @@
                         {{ __('Articles') }}
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
+                    {{-- <x-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
                         {{ __('Categories') }}
-                    </x-nav-link>
+                    </x-nav-link> --}}
 
                     <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
                         {{ __('About') }}
@@ -176,9 +176,9 @@
             {{ __('Articles') }}
         </x-responsive-nav-link>
 
-        <x-responsive-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
+        {{-- <x-responsive-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
             {{ __('Categories') }}
-        </x-responsive-nav-link>
+        </x-responsive-nav-link> --}}
 
         <x-responsive-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
             {{ __('About') }}
